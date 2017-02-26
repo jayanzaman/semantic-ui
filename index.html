@@ -25,15 +25,46 @@
   <script type="text/babel">
 
   var MyName = React.createClass({
+
+
+
     render: function() {
+      var nameStyle = {
+        padding: 10,
+        margin: 10,
+        backgroundColor: this.props.bgcolor,
+        color: "#333",
+        display: "inline-block",
+        fontFamily: "monospace",
+        fontSize: "32",
+        textAlign: "center"
+      };
+
+
     return (
-      <h1>Jayan Zaman</h1>
+      <div style={nameStyle}>Hello, {this.props.greetTarget}</div>
       );
     }
   });
 
+  var Buttonify = React.createClass({
+    render: function() {
+      return (
+        <div>
+          <button type={this.props.behavior}>{this.props.children}</button>
+        </div>
+      )
+    }
+  })
+
+
   ReactDOM.render(
-    <MyName/>,
+    <div>
+      <Buttonify  behavior="Submit">Send Data</Buttonify>
+      <MyName bgcolor="#58B3FF" greetTarget="Jayan Zaman"/>
+      <MyName bgcolor="#FF605F" greetTarget="Jisan Zaman"/>
+      <MyName bgcolor="#FFD52E" greetTarget="Faria Nitol"/>
+    </div>,
     document.querySelector("#container")
   );
 
