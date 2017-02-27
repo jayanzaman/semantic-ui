@@ -26,8 +26,6 @@
 
   const MyName = React.createClass({
 
-
-
     render: function() {
       var nameStyle = {
         padding: 10,
@@ -42,7 +40,7 @@
 
 
     return (
-      <div style={nameStyle}>Hello, {this.props.greetTarget}</div>
+      <div style={nameStyle}>{this.props.greetTarget}</div>
       );
     }
   });
@@ -120,14 +118,60 @@
   });
 
 
+var Clock = React.createClass({
+
+  setTime: function(){
+    var currentTime = new Date().toLocaleTimeString();
+    console.log(currentTime)
+    this.setState({
+      currentTime: currentTime
+    });
+  },
+
+  componentWillMount: function(){
+    this.setTime();
+  },
+
+  componentDidMount: function(){
+    window.setInterval(function(){
+      this.setTime();
+    }.bind(this), 1000)
+  },
+
+  render: function() {
+      var clockStyle = {
+        padding: 10,
+        margin: 10,
+        backgroundColor: this.props.bgcolor,
+        color: "#333",
+        display: "inline-block",
+        fontFamily: "monospace",
+        fontSize: "32",
+        textAlign: "center"
+      }
+
+
+    return (
+      <div style={clockStyle}>
+        <h2>{this.state.currentTime}</h2>
+      </div>
+      )
+
+  }
+
+})
+
+
+
   ReactDOM.render(
     <div>
       <Card color="#FF6663"/>
       <br/>
-      <Buttonify bgcolor="#49DD8E" behavior="Submit">Send Data</Buttonify>
+      <Buttonify bgcolor="#49DD8E" behavior="Submit">Click</Buttonify>
       <MyName bgcolor="#58B3FF" greetTarget="Jayan Zaman"/>
       <MyName bgcolor="#FF605F" greetTarget="Jisan Zaman"/>
       <MyName bgcolor="#FFD52E" greetTarget="Faria Nitol"/>
+      <Clock />
     </div>,
     document.querySelector("#container")
   );
