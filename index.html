@@ -49,9 +49,22 @@
 
   var Buttonify = React.createClass({
     render: function() {
+      var buttonStyle = {
+        padding: 10,
+        margin: 10,
+        backgroundColor: this.props.bgcolor,
+        color: "#333",
+        display: "inline-block",
+        fontFamily: "monospace",
+        fontSize: "32",
+        textAlign: "center",
+        border: "none",
+        WebkitFilter: "drop-shadow(0px 0px 5px #666)",
+        filter: "drop-shadow(0px 0px 5px #666)"
+      }
       return (
         <div>
-          <button type={this.props.behavior}>{this.props.children}</button>
+          <button style={buttonStyle} type={this.props.behavior}>{this.props.children}</button>
         </div>
       )
     }
@@ -110,7 +123,8 @@
   ReactDOM.render(
     <div>
       <Card color="#FF6663"/>
-      <Buttonify  behavior="Submit">Send Data</Buttonify>
+      <br/>
+      <Buttonify bgcolor="#49DD8E" behavior="Submit">Send Data</Buttonify>
       <MyName bgcolor="#58B3FF" greetTarget="Jayan Zaman"/>
       <MyName bgcolor="#FF605F" greetTarget="Jisan Zaman"/>
       <MyName bgcolor="#FFD52E" greetTarget="Faria Nitol"/>
